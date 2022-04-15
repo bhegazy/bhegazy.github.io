@@ -1,0 +1,16 @@
+base_url = "https://billhegazy.me"
+compile_sass = true
+title = "Bill Hegazy's Blog"
+description = "Cloud, AWS, DevOps and Life"
+generate_feed = true
+theme = "hyde"
+[markdown]
+highlight_code = true
+
+[extra]
+hyde_links = [
+    {url = "https://www.linkedin.com/in/bhegazy/", name = "Linkedin"},
+    {url = "https://github.com/bhegazy", name = "Github"},
+    {url = "https://billhegazy.medium.com", name = "Medium"},
+]
+hyde_theme = "theme-base-0d"
