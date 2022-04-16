@@ -1,4 +1,4 @@
-base_url = "https://billhegazy.me"
+base_url = "https://bhegazy.github.io"
 compile_sass = true
 title = "Bill Hegazy's Blog"
 description = "Cloud, AWS, DevOps and Life"
