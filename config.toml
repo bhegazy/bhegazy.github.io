@@ -3,14 +3,59 @@ compile_sass = true
 title = "Bill Hegazy's Blog"
 description = "Cloud, AWS, DevOps and Life"
 generate_feed = true
-theme = "hyde"
+theme = "tale-zola"
+build_search_index = false
+
+# The taxonomies to be rendered for the site and their configuration.
+taxonomies = [
+  {name = "tags", feed = true}, # each tag will have its own feed
+]
+
 [markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
+highlight_theme = "base16-ocean-light"
 
 [extra]
-hyde_links = [
-    {url = "https://www.linkedin.com/in/bhegazy/", name = "Linkedin"},
-    {url = "https://github.com/bhegazy", name = "Github"},
-    {url = "https://billhegazy.medium.com", name = "Medium"},
-]
-hyde_theme = "theme-base-0d"
+# Basic infomation
+author = "Bill Hegazy"
+github = "https://github.com/bhegazy"
+timeformat = "%e %B, %Y"
+
+[extra.seo]
+image = "tale.png"
+image_height = 0
+image_width = 0
+og_locale = "en_US"
+
+
+# Menu items
+[[extra.menu]]
+name = "Posts"
+url = "/"
+
+[[extra.menu]]
+name = "Tags"
+url = "tags"
+
+[[extra.menu]]
+name = "About"
+url = "about"
+[extra.footer]
+start_year = "2022"
+end_year = "2023"
+
+[extra.expressions]
+home = "Home"
+pinned = "Pinned"
+written_by = "Written by"
+on = "on"
+top = "Top"
+tags = "Tags"
+# The contents of the 404 page
+p404 = "404: Page not found"
+p404_info = "Oops! We can't seem to find the page you are looking for."
+p404_back_home_start = "Let's"
+p404_back_home_with_link = "head back home"
+p404_back_home_end = "."
