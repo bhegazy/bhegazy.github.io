@@ -45,7 +45,7 @@ url = "about"
 [extra.footer]
 start_year = "2022"
 end_year = "2023"
-
+info = " "
 [extra.expressions]
 home = "Home"
 pinned = "Pinned"

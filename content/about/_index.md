@@ -7,6 +7,6 @@ Welcome to my personal blog. I write mostly about Cloud, AWS, DevOps and anythin
 
 ## Reach Out
 
-Feel free to reach out to me anytime on [Linkedin](https://www.linkedin.com/in/bhegazy)| [Github](https://github.com/bhegazy)| [Medium](https://billhegazy.medium.com)
+Feel free to reach out to me anytime on [Linkedin](https://www.linkedin.com/in/bhegazy)|[Github](https://github.com/bhegazy)|[Medium](https://billhegazy.medium.com)
 
 Thanks for reading!
