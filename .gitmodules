@@ -1,6 +1,3 @@
-[submodule "path_to_submodule"] 
-	  path = path_to_submodule 
-	    url = git://url-of-source/
 [submodule "themes/hyde"]
 	path = themes/hyde
 	url = https://github.com/getzola/hyde.git
