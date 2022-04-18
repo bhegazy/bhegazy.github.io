@@ -1,6 +1,7 @@
 +++
 title = "About"
-template = "about/section.html"
+path = "about"
+template = "pages.html"
 +++
 
 Welcome to my personal blog. I write mostly about Cloud, AWS, DevOps and anything around that :)

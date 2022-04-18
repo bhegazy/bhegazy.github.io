@@ -1,61 +1,51 @@
 base_url = "https://billhegazy.com/"
 compile_sass = true
-title = "Bill Hegazy's Blog"
-description = "Cloud, AWS, DevOps and Life"
+title = "Bill Hegazy"
+description = "Blogs About Cloud, AWS, DevOps and Life"
 generate_feed = true
-theme = "tale-zola"
+feed_filename = "atom.xml"
+theme = "abridge"
 build_search_index = false
-
-# The taxonomies to be rendered for the site and their configuration.
+minify_html = false
 taxonomies = [
-  {name = "tags", feed = true}, # each tag will have its own feed
+    {name = "tags", feed = true}
 ]
 
 [markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
-highlight_theme = "base16-ocean-dark"
+highlight_theme = "OneHalfDark" # OneHalfDark, material-dark, ayu-dark, Midnight.dark
 
 [extra]
-# Basic infomation
+katex_enable = false # used to to render mathematical notations, requires js
+recent = true
+recent_items = 9
+footer_credit = false
+#google = "Your Google Site verification code."
+textlogo = '<font color="#0072b1">Bill</font> Hegazy'
+sitedesc = true # This enables or disables the display of the site description below the logo.
 author = "Bill Hegazy"
-github = "https://github.com/bhegazy"
-timeformat = "%e %B, %Y"
+keywords = "Cloud, AWS, DevOps, Life, Blog, Bill, Hegazy, bhegazy, Billhegazy"
+banner = "banner.png"
+menu = [
+    {url = "/", name = "Home", slash = true},
+    {url = "/posts/", name = "Posts", slash = true},
+    {url = "/tags/", name = "Tags", slash = true},
+    {url = "/about/", name = "About", slash = true},
+]
+menu_footer = [
+    {url = "/", name = "Home", slash = true},
+    {url = "/about/", name = "About", slash = true},
+    {url = "/privacy/", name = "Privacy", slash = true},
+    {url = "/sitemap.xml", name = "Sitemap", slash = false},
+]
+# meta tags
+twitter = "billhegazy"
 
-[extra.seo]
-image = "tale.png"
-image_height = 0
-image_width = 0
-og_locale = "en_US"
-
-
-# Menu items
-[[extra.menu]]
-name = "Posts"
-url = "/"
-
-[[extra.menu]]
-name = "Tags"
-url = "tags"
-
-[[extra.menu]]
-name = "About"
-url = "about"
-[extra.footer]
-start_year = "2022"
-end_year = "2023"
-info = " "
-[extra.expressions]
-home = "Home"
-pinned = "Pinned"
-written_by = "Written by"
-on = "on"
-top = "Top"
-tags = "Tags"
-# The contents of the 404 page
-p404 = "404: Page not found"
-p404_info = "Oops! We can't seem to find the page you are looking for."
-p404_back_home_start = "Let's"
-p404_back_home_with_link = "head back home"
-p404_back_home_end = "."
+favicon = "images/favicon.ico"
+[extra.social]
+feed = true
+linkedin = "bhegazy"
+github = "bhegazy"
+twitter = "billhegazy"
+docker = "bhegazy"
+stack = "6570086"

@@ -5,14 +5,12 @@ date = 2022-04-17
 
 [taxonomies]
 tags = ["AWS", "terraform"]
-
-[extra]
-author = "Bill Hegazy"
 +++
-<link rel="canonical" href="https://billhegazy.medium.com/terraform-in-aws-9793e3c01173"/>
-  
-# Tools and best practices, that makes your terraform life easier on AWS.
-![AWS SA Pro note](/images/terraform-aws.jpeg)
+*Tools and best practices, that makes your terraform life easier on AWS.*
+<!-- more -->
+<p align="center">
+  <img src="terraform-aws.jpeg"/>
+</p>
 
 <i> Originally published at <a href="https://billhegazy.medium.com/terraform-in-aws-9793e3c01173">https://medium.com</a> on 19 June 2021</i>
 
@@ -161,7 +159,7 @@ You may wish to ignore some warnings from tfsec. you can simply add a comment co
 
 **For example, to ignore an open security group rule:**
 
-```hcl
+```
 resource "aws_security_group_rule" "my-rule" {
     type = "ingress"
     #tfsec:ignore:AWS006
@@ -174,7 +172,7 @@ resource "aws_security_group_rule" "my-rule" {
 - Limit access to Terraform state S3bucket access, encrypt it and enable versioning.
 - Avoid storing secrets when creating a resource as Terraform state will store secrets plain-text, at least create a temporary password and change it after the resource is created.
 
-```hcl
+```
 # Simple Example
 resource "random_password" "db-password" {
   length  = 16
