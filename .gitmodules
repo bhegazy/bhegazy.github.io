@@ -1,4 +1,4 @@
 [submodule "themes/abridge"]
 	path = themes/abridge
-	url = git@github.com:Jieiku/abridge.
+	url = git@github.com:Jieiku/abridge.git
 	ignore = dirty
