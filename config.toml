@@ -14,6 +14,7 @@ taxonomies = [
 [markdown]
 highlight_code = true
 highlight_theme = "OneHalfDark" # OneHalfDark, material-dark, ayu-dark, Midnight.dark
+render_emoji = true
 
 [extra]
 katex_enable = false # used to to render mathematical notations, requires js
@@ -30,6 +31,7 @@ menu = [
     {url = "/", name = "Home", slash = true},
     {url = "/posts/", name = "Posts", slash = true},
     {url = "/tags/", name = "Tags", slash = true},
+    {url = "/links/", name = "Links", slash = true},
     {url = "/about/", name = "About", slash = true},
 ]
 menu_footer = [
