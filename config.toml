@@ -21,7 +21,7 @@ recent = true
 recent_items = 9
 footer_credit = false
 #google = "Your Google Site verification code."
-textlogo = '<font color="#0072b1">Bill</font> Hegazy'
+textlogo = '<font color="#fb0">Bill</font> Hegazy'
 sitedesc = true # This enables or disables the display of the site description below the logo.
 author = "Bill Hegazy"
 keywords = "Cloud, AWS, DevOps, Life, Blog, Bill, Hegazy, bhegazy, Billhegazy"
