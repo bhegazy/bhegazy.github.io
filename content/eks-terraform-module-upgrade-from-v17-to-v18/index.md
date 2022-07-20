@@ -16,7 +16,7 @@ Check the variables changes [here](https://github.com/terraform-aws-modules/terr
 
 ```hcl
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
+  source = "terraform-aws-modules/eks/aws"
 
   # check releases for the latest version
   # https://github.com/terraform-aws-modules/terraform-aws-eks/releases
@@ -50,12 +50,14 @@ module "eks" {
     }
   }
 
-  cluster_encryption_config = [{
-    provider_key_arn = aws_kms_key.eks.arn
-    resources        = ["secrets"]
-  }]
+  cluster_encryption_config = [
+    {
+      provider_key_arn = aws_kms_key.eks.arn
+      resources        = ["secrets"]
+    }
+  ]
 
-  vpc_id     = module.vpc.vpc_id
+  vpc_id = module.vpc.vpc_id
 
   # Rename subnets to subnet_ids
   subnet_ids = module.vpc.private_subnets
@@ -74,12 +76,14 @@ module "eks" {
     block_device_mappings = {
       xvda = {
         device_name = "/dev/xvda"
+
         ebs = {
           volume_size = "100"
           volume_type = "gp3"
           encrypted   = true
           kms_key_id  = aws_kms_key.ebs.arn
         }
+
       }
     }
     metadata_options = {
@@ -95,14 +99,16 @@ module "eks" {
     default = {
       name            = "default"
       use_name_prefix = true
-      subnet_ids = module.vpc.private_subnets
+      subnet_ids      = module.vpc.private_subnets
       desired_size    = 3
       max_size        = 10
       min_size        = 3
+
       labels = {
         environment = local.environment
         capacity    = "on_demand"
       }
+
       tags = local.tags
     },
     spot = {
@@ -120,9 +126,11 @@ module "eks" {
         environment = local.environment
         capacity    = "spot"
       }
+
       tags = local.tags
+    }
+    tags = local.tags
   }
-  tags = local.tags
 }
 ```
 
@@ -202,7 +210,7 @@ After the `apply` is complete, you should see new nodes joining the cluster and 
 
 ## 6) Manually delete the old node group and related resources
 
-Now you can go ahead and delete the old node group manually and pods will restart on new node groups 👍 🎉.
+Now you can go ahead and delete the old node group manually and pods will restart on new node groups 👍🎉.
 
 Other related resources should be manually deleted as well such as old node group security groups.
 
@@ -213,5 +221,3 @@ Other related resources should be manually deleted as well such as old node grou
 Like this post? Consider following me on Medium **[billhegazy](https://billhegazy.medium.com/).**
 
 If you have questions or want to reach out, add me on **[LinkedIn](https://www.linkedin.com/in/bhegazy/)**.
-
-*Originally published at [https://billhegazy.com](https://billhegazy.com/aws-solution-architect-professional-certificate/).*
