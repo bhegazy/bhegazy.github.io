@@ -5,9 +5,9 @@ date = 2022-07-20
 [taxonomies]
 tags = ["AWS", "Terraform", "EKS"]
 +++
-If you’re like me and you are using the awesome [terraform-aws-eks](https://github.com/terraform-aws-modules/terraform-aws-eks) module to manage your EKS clusters, then you should know that there are many [breaking changes](https://github.com/terraform-aws-modules/terraform-aws-eks/releases/tag/v18.0.0) when upgrading the module version from `v17.x to` `v18.x`, in this guide I will share the steps that I took to ease the migration a little bit (we have more than 12 clusters with similar config) and I hope that this helps someone.
+If you’re like me and you are using the awesome [terraform-aws-eks](https://github.com/terraform-aws-modules/terraform-aws-eks) module to manage your EKS clusters, then you should know that there are many [breaking changes](https://github.com/terraform-aws-modules/terraform-aws-eks/releases/tag/v18.0.0) when upgrading the module version from `v17.x to` `v18.x`, in this guide I will share the steps that I took to ease the upgrade a little bit (we have more than 12 clusters with similar config) and I hope that this helps someone.
 
-> I highly recommend that you also read the official guide [UPGRADE-18.0.md](https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/UPGRADE-18.0.md) document
+> I highly recommend that you also read the official guide [UPGRADE-18.0.md](https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/UPGRADE-18.0.md).
 >
 
 ## 1) Change module version and variables
@@ -126,7 +126,7 @@ module "eks" {
 }
 ```
 
-If your `iam_role_name` variable is NOT the cluster_name, the get the cluster iam role name using aws cli:
+If your `iam_role_name` variable is NOT the cluster_name, then get the cluster iam role name using aws cli:
 
 ```bash
 export CLUSTER_NAME=bill-eks-test
@@ -182,11 +182,15 @@ terraform import 'aws_eks_addon.this["kube-proxy"]' cluster:kube-proxy
 2. Old node groups must be destroyed
 3. Node groups related resources (sg, sg rules, old node iam) must be destroyed
 
+<br>
+
 ### You should see the following:
 
 1. Some cluster policy changes.
 2. New node group adding.
 3. New node groups related resources.
+
+<br>
 
 ## 5) Proceed with `terraform apply`
 
@@ -194,11 +198,15 @@ You can now start by applying the changes with `terraform apply` .
 
 After the `apply` is complete, you should see new nodes joining the cluster and working as expected
 
+<br>
+
 ## 6) Manually delete the old node group and related resources
 
 Now you can go ahead and delete the old node group manually and pods will restart on new node groups 👍 🎉.
 
 Other related resources should be manually deleted as well such as old node group security groups.
+
+<br>
 
 # Over to you
 
