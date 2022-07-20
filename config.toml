@@ -7,26 +7,46 @@ feed_filename = "atom.xml"
 theme = "abridge"
 build_search_index = false
 minify_html = false
+default_language = "en"
+output_dir = "public"
 taxonomies = [
     {name = "tags", feed = true}
 ]
 
 [markdown]
 highlight_code = true
-highlight_theme = "OneHalfDark" # OneHalfDark, material-dark, ayu-dark, Midnight.dark
-render_emoji = true
+highlight_theme = "css"
+extra_syntaxes_and_themes = ["themes/abridge/highlight_themes"]
+render_emoji = false
+external_links_target_blank = true
+external_links_no_follow = false
+external_links_no_referrer = false
+smart_punctuation = false
 
 [extra]
-katex_enable = false # used to to render mathematical notations, requires js
-recent = true
+
+uglyurls = false # if set to true then links are generated with the full path. eg https://abridge.netlify.app/index.html
+language_code = "en-US"
+title_separator = "|"  # Separator between title and title_addition, set as |, -, _, etc
+title_addition = "" # a default value for title addition
+recent = true # TOC / index
 recent_items = 9
-footer_credit = false
-#google = "Your Google Site verification code."
-textlogo = '<font color="#fb0">Bill</font> Hegazy'
-sitedesc = true # This enables or disables the display of the site description below the logo.
 author = "Bill Hegazy"
 keywords = "Cloud, AWS, DevOps, Life, Blog, Bill, Hegazy, bhegazy, Billhegazy"
-banner = "banner.png"
+
+title_size_index = "s85" # size: s95, s90, s85, s80, s75, s70, false(full size)
+meta_index = { position="bottom", size="s90", author=false, readtime=false, readstring="min", date=true, categories_tags=true, divider=" " }
+meta_post = { position="top", size="s95", author=true, readtime=false, readstring="min read", date=true, categories_tags=true, divider=" " }
+
+footer_size = "s90" # size: s95, s90, s85, s80, s75, s70, false(full size)
+footer_credit = true
+#footer_credit_override = '<p class="s90">Powered by <a href="https://www.getzola.org/">Zola</a> &#38; <a href="https://github.com/Jieiku/abridge/">Abridge</a></p>'
+textlogo = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f90" viewBox="0 0 96 96" width="32" height="32"><path stroke-width="14" d="M14 99 46 7h4l32 92"/><path stroke-width="9" d="M-3 82c43-26 59-26 102 0"/><path stroke-linecap="round" stroke-width="1.5" d="M94 72v7m-5-9.8v7m-5-9.8v7.1M79 64v7M63 57.7v7m-5-8.2v7m-5-7.8v7m-5-7.2v7m-5-6.7v7m-5-6.3v7m-5-5.8v7M17 64v7m-5-4.6v7m-5-4.2v7M2 72v7"/></svg>bridge'
+
+sitedesc = false # enables or disables the display of the site description below the logo.
+headhr = false # show or hide horizontal rule below header
+foothr = true # show or hide horizontal rule above footer
+
 menu = [
     {url = "/", name = "Home", slash = true},
     {url = "/posts/", name = "Posts", slash = true},
@@ -40,10 +60,53 @@ menu_footer = [
     {url = "/privacy/", name = "Privacy", slash = true},
     {url = "/sitemap.xml", name = "Sitemap", slash = false},
 ]
+
+textlogo = '<font color="#fb0">Bill</font> Hegazy'
+sitedesc = true # This enables or disables the display of the site description below the logo.
 # meta tags
 twitter = "billhegazy"
 
-favicon = "images/favicon.ico"
+integrity = true # setting this to false is useful for developing, should normally be true.
+js_search_index = "search_index.en.js" # Separate Always, generated each build
+js_prestyle = "prestyle.js"# Bundleable - used to preload: FontAwesome, Katex, external Google Fonts
+js_search = [ "elasticlunr.min.js", "search.js" ]# Bundleable
+js_codecopy = "codecopy.js"# Bundleable
+
+########## Switcher ########## (comment this block out if NOT using switcher):
+js_theme = "theme.min.js" # Separate Always, comment out if using -auto/-light/-dark stylesheet. (required for switcher)
+js_themeButton = "theme_button.js"# Bundleable
+js_bundle = "abridge-switcher.min.js"# Bundle JS File, comment out to disable (includes switcher)
+stylesheets = [ "abridge-switcher.css" ] # Orange Automatic Dark/Light Theme based on browser/system preference with switcher
+
+banner = "banner.png" # Used as default image for OpenGraph/Twitter if page specific image is undefined.
+# favicons, comment out a line to disable loading some or all of these.
+favicon_theme_color = "#333333"
+favicon_ms_color = "#333333"
+favicon_webmanifest = "site.webmanifest" # Used for android-chrome-512x512.png and android-chrome-192x192.png
+favicon_mask = "safari-pinned-tab.svg" # safari-pinned-tab.svg
+favicon_mask_color = "#ff9900"
+favicon180 = "images/favicon.ico" # apple-touch-icon.png
+favicon32 = "images/favicon.ico" # favicon-32x32.png
+favicon16 = "images/favicon.ico" # favicon-16x16.png
+
+icon_search = "svgs search" # Search button in search box.
+icon_adjust = "svgs adjust" # Theme Switcher button in top menu. (add class svgh to change colors on hover)
+icon_first = "svgs svgh angll" # Pagination First Page.
+icon_prev = "svgs svgh angl" # Pagination Previous Page.
+icon_next = "svgs svgh angr" # Pagination Next Page.
+icon_last = "svgs svgh angrr" # Pagination Last Page.
+icon_top = "svgs svgh angu" # Back to Top Button.
+
+math = false # katex math js library, used to to render mathematical notations, requires javascript
+math_auto_render = false
+
+katex_css = "katex.min.css" # Fonts - to load the css locally, you also need to have all the fonts.
+katex_js = "katex.min.js" # use local js, so that we dont have to whitelist cdn.jsdelivr.net for script src in CSP
+mathtex_js = "mathtex-script-type.min.js" # use local js, so that we dont have to whitelist cdn.jsdelivr.net for script src in CSP
+katex_autorender_js = "auto-render.min.js"
+katex_options = "katexoptions.js"
+katex_bundle = "katexbundle.min.js"
+
 [extra.social]
 feed = true
 linkedin = "bhegazy"

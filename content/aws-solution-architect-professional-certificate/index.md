@@ -8,7 +8,7 @@ tags = ["AWS", "Learning"]
 Yes, I admit it, I have been procrastinating for a few months while preparing for my AWS SA Pro exam<!-- more -->, but I controlled it and finally took the exam last February, in fact, I have been procrastinating on writing this post for 2 months now😅.
 <br>
 <div align="center">
-{{ img(path="./annie-spratt-399PPQ9ROlo-unsplash.jpg", alt="annie-spratt-399PPQ9ROlo-unsplash.jpg") }}
+{{ img(src="./annie-spratt-399PPQ9ROlo-unsplash.jpg", alt="annie-spratt-399PPQ9ROlo-unsplash.jpg") }}
 Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a> on <a href="https://unsplash.com/s/photos/procrastination?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 <br>
@@ -53,7 +53,7 @@ You might be wondering, *what notes should you take?* I will give you an example
 > I use [notion](https://www.notion.so/) as my note-taking app, I recommend note-taking app that can sync to multiple devices
 
 <div align="center">
-{{ img(path="./aws-sap-notes-example.png", alt="Notes Example Photo") }}
+{{ img(src="./aws-sap-notes-example.png", alt="Notes Example Photo") }}
 <font color="#808080" size="-1">Example of my AWS notes</font>
 </div>
 
