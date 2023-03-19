@@ -1,5 +1,5 @@
 +++
-title = "Controlling Procrastination and Get Your AWS Security Speciality Certificate"
+title = "Controlling Procrastination and Get Your AWS Security Specialty Certificate"
 date = 2023-03-19
 
 [taxonomies]
@@ -14,7 +14,7 @@ Well, guess what? I'm back with more tips to help you tackle another awesome AWS
 Photo by <a href="https://unsplash.com/@magnetme?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Magnet.me</a> on <a href="https://unsplash.com/photos/LDcC7aCWVlo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-Just like you, I've been a victim of procrastination while preparing for my AWS exams. But, fear not! I've got your back yet again! Let's dive in and explore some tips that can help you control procrastination and successfully achieve this certification!
+Just like you, I've been a victim of procrastination while preparing for my AWS exams. But, Do not fear Bill is here! :laughing: I've got your back yet again! Let's dive in and explore some tips that can help you control procrastination and successfully achieve this certification!
 
 ## Say Goodbye to Social Media (Temporarily)
 
@@ -58,7 +58,9 @@ As I mentioned in my previous [post](https://billhegazy.com/aws-solution-archite
 
 ## It's OK to Reschedule Your Exam
 
-Hey, no need to stress if you're thinking about rescheduling your exam because you're not quite ready. It's totally cool to give yourself some extra time to prepare. After all, the main goal is to pass the exam, right? So, take the time you need to make sure you've got this! And if you need someone's permission to reschedule, consider this your official go-ahead from me. Just remember, your success and well-being are what matter most, so focus on getting well-prepared for the exam.
+Hey, no need to stress if you're thinking about rescheduling your exam because you're not quite ready. It's totally cool to give yourself some extra time to prepare. After all, the main goal is to pass the exam, right? So, take the time you need to make sure you've got this!
+
+And if you need someone's permission to reschedule, consider this your official go-ahead from me. Just remember, your success and well-being are what matter most, so focus on getting well-prepared for the exam :smile: .
 
 <br>
 
