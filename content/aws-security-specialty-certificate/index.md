@@ -20,7 +20,7 @@ Just like you, I've been a victim of procrastination while preparing for my AWS 
 
 During your study period, consider uninstalling social media apps like Instagram, TikTok, and Facebook. Trust me, your sanity and focus will thank you for it. 
 
-Social media can be a huge time sink and major source of distractions, so by eliminating them temporarily, you'll be able to better concentrate on your studies.
+Social media can be a huge time sink and a major source of distractions, so by eliminating them temporarily, you'll be able to better concentrate on your studies.
 
 <br>
 
@@ -30,10 +30,10 @@ To prepare for the AWS Certified Security - Specialty exam, it's crucial to gain
 
 - IAM and SSO
 - KMS and CloudHSM
-- Cloudtrail, Cloudwatch and S3
+- Cloudtrail, Cloudwatch, and S3
 - WAF and Shield
-- Config, Security Hub and GuardDuty
-- Inspector, Macie and Detective
+- Config, Security Hub, and GuardDuty
+- Inspector, Macie, and Detective
 - Cloudfront and ACM
 
 I highly recommend checking the [exam guide](https://d1.awsstatic.com/training-and-certification/docs-security-spec/) for the full list of services.
@@ -46,13 +46,13 @@ Courses by [Adrian Cantrill](https://learn.cantrill.io/p/aws-certified-security-
 
 Practice tests are lifesavers. Start by taking one to figure out your strengths and weaknesses. Study the areas you struggle with, then take another practice test. Keep repeating this process to refine your understanding and boost your chances of acing the exam.
 
-I recommend [Tutorials Dojo Practice tests](https://tutorialsdojo.com/courses/aws-certified-security-specialty-practice-exams/) as the explaination is very clear and helpful.
+I recommend [Tutorials Dojo Practice tests](https://tutorialsdojo.com/courses/aws-certified-security-specialty-practice-exams/) as the explanation is very clear and helpful.
 
 <br>
 
 ## Set a Deadline and Book Your Exam
 
-As I mentioned in my previous [post](https://billhegazy.com/aws-solution-architect-professional-certificate/), and would like to emphasize here because it's so important, scheduling your exam upfront is a great strategy for overcoming procrastination. Although it's scary to set a date without knowing when you'll be ready, it actually helps you allocate time to study.
+As I mentioned in my previous [post](https://billhegazy.com/aws-solution-architect-professional-certificate/), and would like to emphasize here that it's so important, scheduling your exam upfront is a great strategy for overcoming procrastination. Although it's scary to set a date without knowing when you'll be ready, it actually helps you allocate time to study.
 
 <br>
 
@@ -60,7 +60,7 @@ As I mentioned in my previous [post](https://billhegazy.com/aws-solution-archite
 
 Hey, no need to stress if you're thinking about rescheduling your exam because you're not quite ready. It's totally cool to give yourself some extra time to prepare. After all, the main goal is to pass the exam, right? So, take the time you need to make sure you've got this!
 
-And if you need someone's permission to reschedule, consider this your official go-ahead from me. Just remember, your success and well-being are what matter most, so focus on getting well-prepared for the exam :smile: .
+And if you need someone's permission to reschedule, consider this your official go-ahead from me. Just remember, your success and well-being are what matter most, so focus on getting well-prepared for the exam :smile:
 
 <br>
 
