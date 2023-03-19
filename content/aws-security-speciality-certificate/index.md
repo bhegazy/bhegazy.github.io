@@ -7,14 +7,14 @@ tags = ["AWS", "Learning", "Security"]
 +++
 Hey there! You might remember my previous post on controlling procrastination while preparing for the AWS <!-- more --> [Solution Architect Professional Certificate](https://billhegazy.com/aws-solution-architect-professional-certificate/).
 
-Well, guess what? I'm back with more tips to help you tackle another awesome AWS exam **AWS Certified Security - Specialty**.
+Well, guess what? I'm back with more tips to help you tackle another awesome AWS: exam **AWS Certified Security - Specialty**.
 <br>
 <div align="center">
 {{ img(src="./magnet-me-LDcC7aCWVlo-unsplash.jpg", alt="magnet-me-LDcC7aCWVlo-unsplash.jpg") }}
 Photo by <a href="https://unsplash.com/@magnetme?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Magnet.me</a> on <a href="https://unsplash.com/photos/LDcC7aCWVlo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
-Just like you, I've been a victim of procrastination, while preparing for my AWS exams. But, fear not! I've got your back yet again!. Let's dive in and explore some tips that can help you control procrastination and successfully achieve this certification!
+Just like you, I've been a victim of procrastination while preparing for my AWS exams. But, fear not! I've got your back yet again! Let's dive in and explore some tips that can help you control procrastination and successfully achieve this certification!
 
 ## Say Goodbye to Social Media (Temporarily)
 
@@ -26,20 +26,19 @@ Social media can be a huge time sink and major source of distractions, so by eli
 
 ## Get Familiar and Hands-On with AWS Security Services
 
-To prepare for the AWS Certified Security - Specialty exam, it's crucial to gain hands-on experience with various AWS security services. This will help you understand how these services work in real-world scenarios and enable you to apply the concepts you'll face during the exam.
-Focus your study more on the below services and really understand the differences between these services:
+To prepare for the AWS Certified Security - Specialty exam, it's crucial to gain hands-on experience with various AWS security services. This will help you understand how these services work in real-world scenarios and enable you to apply the concepts you'll face during the exam. Focus your study more on the following services and really understand the differences between them:
 
-- IAM, SSO
-- KMS, CloudHSM
-- Cloudtrail, Cloudwatch, S3
+- IAM and SSO
+- KMS and CloudHSM
+- Cloudtrail, Cloudwatch and S3
 - WAF and Shield
-- Config, Security Hub, GuardDuty
-- Inspectorm Macie and Detective
+- Config, Security Hub and GuardDuty
+- Inspector, Macie and Detective
 - Cloudfront and ACM
 
-Highly recommend to check the [exam guide](https://d1.awsstatic.com/training-and-certification/docs-security-spec/AWS-Certified-Security-Specialty_Exam-Guide.pdf) for the full list of services.
+I highly recommend checking the [exam guide](https://d1.awsstatic.com/training-and-certification/docs-security-spec/) for the full list of services.
 
-I recommend courses such by [Adrian Cantrill](https://learn.cantrill.io/p/aws-certified-security-specialty) are super helpful for gaining practical experience.
+Courses by [Adrian Cantrill](https://learn.cantrill.io/p/aws-certified-security-specialty) are super helpful for gaining practical experience.
 
 <br>
 
@@ -67,7 +66,7 @@ Hey, no need to stress if you're thinking about rescheduling your exam because y
 
 ## Conclusion
 
-And there you have it! By following these exta tips, I hope you control your  procrastination temporary, until you achieve the AWS Certified Security - Speciality exam. Remember, the journey might be challenging, but the rewards are worth it. So, keep pushing forward and believe in yourself. You've got this!
+And there you have it! By following these extra tips, I hope you control your procrastination temporarily until you achieve the AWS Certified Security - Specialty exam. Remember, the journey might be challenging, but the rewards are worth it. So, keep pushing forward and believe in yourself. You've got this!
 
 ---
 
