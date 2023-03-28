@@ -11,7 +11,9 @@ Lately Slack has been ADHD-friendly with some amazing features that can help red
 <br>
 
 <div style="text-align: center;">
-{{ img(src="adhd-slack-1.png" alt="adhd slack high" w=600 h=400) }}
+{{ img(src="andreas-klassen-gZB-i-dA6ns-unsplash.jpg" alt="slack productivity" w=800 h=600) }}
+
+Photo by <a href="https://unsplash.com/@schmaendels?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Andreas Klassen</a> on <a href="https://unsplash.com/photos/gZB-i-dA6ns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </div>
 
 ## But Why?
