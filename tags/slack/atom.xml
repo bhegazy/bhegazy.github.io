@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Bill Hegazy - Slack</title>
+    <subtitle>Blogs About Cloud, AWS, DevOps and Life</subtitle>
+    <link href="https://billhegazy.com/tags/slack/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://billhegazy.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-03-28T00:00:00+00:00</updated>
+    <id>https://billhegazy.com/tags/slack/atom.xml</id>
+    <entry xml:lang="en">
+        <title>The ADHD-Friendly Guide to Using Slack for Improved Productivity</title>
+        <published>2023-03-28T00:00:00+00:00</published>
+        <updated>2023-03-28T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://billhegazy.com/adhd-friendly-guide-slack/" type="text/html"/>
+        <id>https://billhegazy.com/adhd-friendly-guide-slack/</id>
+        <content type="html">&lt;p&gt;Lately Slack has been ADHD-friendly with some amazing features that can help reduce distraction. In this post, I wanted to share &lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt; the slack features I use daily to help me focus on my tasks without getting distracted by many messages and channels.&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;andreas-klassen-gZB-i-dA6ns-unsplash.jpg&quot; alt=&quot;slack productivity&quot; width=&quot;800&quot; height=&quot;600&quot; &#x2F;&gt;
+
+&lt;p&gt;Photo by &lt;a href=&quot;https:&#x2F;&#x2F;unsplash.com&#x2F;@schmaendels?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText&quot;&gt;Andreas Klassen&lt;&#x2F;a&gt; on &lt;a href=&quot;https:&#x2F;&#x2F;unsplash.com&#x2F;photos&#x2F;gZB-i-dA6ns?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;but-why&quot;&gt;But Why?&lt;&#x2F;h2&gt;
+&lt;p&gt;Don&#x27;t skip this part! Yes, I&#x27;m talking to you my fellow ADHD human, I know you want to jump right in and skip this part, so I will keep it short and in bullet points for our brain.&lt;&#x2F;p&gt;
+&lt;p&gt;Distractions will:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reduce our productivity.&lt;&#x2F;li&gt;
+&lt;li&gt;Prevent us from achieving our goals.&lt;&#x2F;li&gt;
+&lt;li&gt;Leading to a decrease in the quality of work and missed deadlines.&lt;&#x2F;li&gt;
+&lt;li&gt;Overtime causes stress and leads to frustration.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Got it? Ok, now we can jump right in.&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;1-notifications-schedule&quot;&gt;1) Notifications Schedule&lt;&#x2F;h2&gt;
+&lt;p&gt;Do your brain a favor by setting a schedule for slack notifications.&lt;&#x2F;p&gt;
+&lt;p&gt;This setting is like the default settings for notifications and noise reduction, for example, I start work at 8:00&#x2F;8:30 AM, then I only allow notifications between 09:30 AM - 4:30 PM, which leaves me with default focus time in the morning.&lt;&#x2F;p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;adhd-slack-2.png&quot; alt=&quot;slack notifications&quot; width=&quot;500&quot; height=&quot;400&quot; &#x2F;&gt;
+
+&lt;&#x2F;div&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;2-pause-notifications&quot;&gt;2) Pause Notifications&lt;&#x2F;h2&gt;
+&lt;p&gt;This is the most obvious feature, if you have an important task at hand that requires a lot of focus, then I recommend pausing notifications completely for 1-2 hours.&lt;&#x2F;p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;adhd-slack-3.png&quot; alt=&quot;slack pause notifications&quot; width=&quot;500&quot; height=&quot;400&quot; &#x2F;&gt;
+
+&lt;&#x2F;div&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;3-remind-me-in&quot;&gt;3) Remind me in …&lt;&#x2F;h2&gt;
+&lt;p&gt;Do you get a lot of direct messages while you are in focus mode? did someone tag your name or group name in another channel? Then 
+this feature is for you!&lt;&#x2F;p&gt;
+&lt;p&gt;If the message requires your attention&#x2F;reply but is not urgent, then use the remind me in xx feature, all u have to do is right-click on the message &amp;gt; Remind me in 1 hour or even Remind me tomorrow.&lt;&#x2F;p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;adhd-slack-4.png&quot; alt=&quot;slack remind me&quot; width=&quot;500&quot; height=&quot;400&quot; &#x2F;&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;This is the most ADHD feature friendly that slack has to offer, this feature not only helped me focus on the task at hand but also helped remind me to reply to important topics, threads, and messages.&lt;&#x2F;p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;adhd-slack-5.png&quot; alt=&quot;slackbot meme&quot; width=&quot;300&quot; height=&quot;300&quot; &#x2F;&gt;
+
+&lt;&#x2F;div&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;4-per-channel-notification&quot;&gt;4) Per Channel Notification&lt;&#x2F;h2&gt;
+&lt;p&gt;If you are in many important channels and do not want to leave the channel, then you can customize the notification of the channel.&lt;&#x2F;p&gt;
+&lt;p&gt;To do this right-click on the slack channel you want to customize &amp;gt; Change Notifications, you also have the option to mute channels completely.&lt;&#x2F;p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;adhd-slack-6.png&quot; alt=&quot;slack notifications channel&quot; width=&quot;400&quot; height=&quot;400&quot; &#x2F;&gt;
+
+&lt;&#x2F;div&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;5-turn-off-notification-for-replies&quot;&gt;5) Turn off Notification for replies&lt;&#x2F;h2&gt;
+&lt;p&gt;Have your name or group name been tagged on a long-running thread that does not need your attention or contributions anymore? Easy! click on the message you want &amp;gt; the three dots menu, also known as the kebab menu &amp;gt; turn off notifications for replies&lt;&#x2F;p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;adhd-slack-7.png&quot; alt=&quot;notification for replies&quot; width=&quot;300&quot; height=&quot;300&quot; &#x2F;&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;And this is how I feel after turning off notifications for replies 😄&lt;&#x2F;p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;adhd-slack-8.png&quot; alt=&quot;slack notification meme&quot; width=&quot;400&quot; height=&quot;400&quot; &#x2F;&gt;
+
+&lt;&#x2F;div&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;6-leave-channels&quot;&gt;6) Leave Channels&lt;&#x2F;h2&gt;
+&lt;p&gt;The last thing that can help you lower the distraction is by leaving the slack channel completely, but if you are like me and feel lazy to do that, then you could wait for slackbot monthly recommendations.&lt;&#x2F;p&gt;
+&lt;div style=&quot;text-align: center;&quot;&gt;
+ 
+&lt;img src=&quot;adhd-slack-9.png&quot; alt=&quot;slack leave channel&quot; width=&quot;500&quot; height=&quot;400&quot; &#x2F;&gt;
+
+&lt;&#x2F;div&gt;
+&lt;br&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;And there you go! Managing distractions is essential for anyone, especially for the ADHD brain to stay focused and be productive. So, whether you&#x27;re working on a deadline-driven project or simply trying to stay on task, give these Slack tips a try and see how they can help you stay focused and achieve your goals.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Like this post? Consider following me on Medium &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;billhegazy.medium.com&#x2F;&quot;&gt;billhegazy&lt;&#x2F;a&gt;.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;If my contents helps you in anyway, then consider &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.buymeacoffee.com&#x2F;billhegazy&quot;&gt;Buying Me a Coffee&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; ☕&lt;&#x2F;p&gt;
+&lt;p&gt;If you have questions or want to reach out, add me on &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;bhegazy&#x2F;&quot;&gt;LinkedIn&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+</content>
+    </entry>
+</feed>

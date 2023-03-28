@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Bill Hegazy - Learning</title>
+    <subtitle>Blogs About Cloud, AWS, DevOps and Life</subtitle>
+    <link href="https://billhegazy.com/tags/learning/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://billhegazy.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-03-19T00:00:00+00:00</updated>
+    <id>https://billhegazy.com/tags/learning/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Controlling Procrastination and Get Your AWS Security Specialty Certificate</title>
+        <published>2023-03-19T00:00:00+00:00</published>
+        <updated>2023-03-19T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://billhegazy.com/aws-security-specialty-certificate/" type="text/html"/>
+        <id>https://billhegazy.com/aws-security-specialty-certificate/</id>
+        <content type="html">&lt;p&gt;Hey there! You might remember my previous post on controlling procrastination while preparing for the AWS &lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;billhegazy.com&#x2F;aws-solution-architect-professional-certificate&#x2F;&quot;&gt;Solution Architect Professional Certificate&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Well, guess what? I&#x27;m back with more tips to help you tackle another awesome AWS: exam &lt;strong&gt;AWS Certified Security - Specialty&lt;&#x2F;strong&gt;.
+&lt;br&gt;&lt;&#x2F;p&gt;
+&lt;div align=&quot;center&quot;&gt;
+ 
+&lt;img src=&quot;magnet-me-LDcC7aCWVlo-unsplash.jpg&quot; alt=&quot;magnet-me-LDcC7aCWVlo-unsplash.jpg&quot; width=&quot;6720&quot; height=&quot;4480&quot; &#x2F;&gt;
+
+Photo by &lt;a href=&quot;https:&#x2F;&#x2F;unsplash.com&#x2F;@magnetme?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText&quot;&gt;Magnet.me&lt;&#x2F;a&gt; on &lt;a href=&quot;https:&#x2F;&#x2F;unsplash.com&#x2F;photos&#x2F;LDcC7aCWVlo?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;Just like you, I&#x27;ve been a victim of procrastination while preparing for my AWS exams. But, Do not fear Bill is here! 😆 I&#x27;ve got your back yet again! Let&#x27;s dive in and explore some tips that can help you control procrastination and successfully achieve this certification!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;say-goodbye-to-social-media-temporarily&quot;&gt;Say Goodbye to Social Media (Temporarily)&lt;&#x2F;h2&gt;
+&lt;p&gt;During your study period, consider uninstalling social media apps like Instagram, TikTok, and Facebook. Trust me, your sanity and focus will thank you for it. &lt;&#x2F;p&gt;
+&lt;p&gt;Social media can be a huge time sink and a major source of distractions, so by eliminating them temporarily, you&#x27;ll be able to better concentrate on your studies.&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;get-familiar-and-hands-on-with-aws-security-services&quot;&gt;Get Familiar and Hands-On with AWS Security Services&lt;&#x2F;h2&gt;
+&lt;p&gt;To prepare for the AWS Certified Security - Specialty exam, it&#x27;s crucial to gain hands-on experience with various AWS security services. This will help you understand how these services work in real-world scenarios and enable you to apply the concepts you&#x27;ll face during the exam. Focus your study more on the following services and really understand the differences between them:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;IAM and SSO&lt;&#x2F;li&gt;
+&lt;li&gt;KMS and CloudHSM&lt;&#x2F;li&gt;
+&lt;li&gt;Cloudtrail, Cloudwatch, and S3&lt;&#x2F;li&gt;
+&lt;li&gt;WAF and Shield&lt;&#x2F;li&gt;
+&lt;li&gt;Config, Security Hub, and GuardDuty&lt;&#x2F;li&gt;
+&lt;li&gt;Inspector, Macie, and Detective&lt;&#x2F;li&gt;
+&lt;li&gt;Cloudfront and ACM&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I highly recommend checking the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;d1.awsstatic.com&#x2F;training-and-certification&#x2F;docs-security-spec&#x2F;&quot;&gt;exam guide&lt;&#x2F;a&gt; for the full list of services.&lt;&#x2F;p&gt;
+&lt;p&gt;Courses by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;learn.cantrill.io&#x2F;p&#x2F;aws-certified-security-specialty&quot;&gt;Adrian Cantrill&lt;&#x2F;a&gt; are super helpful for gaining practical experience.&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;h3 id=&quot;practice-tests-study-rinse-and-repeat&quot;&gt;Practice Tests, Study, Rinse, and Repeat&lt;&#x2F;h3&gt;
+&lt;p&gt;Practice tests are lifesavers. Start by taking one to figure out your strengths and weaknesses. Study the areas you struggle with, then take another practice test. Keep repeating this process to refine your understanding and boost your chances of acing the exam.&lt;&#x2F;p&gt;
+&lt;p&gt;I recommend &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;tutorialsdojo.com&#x2F;courses&#x2F;aws-certified-security-specialty-practice-exams&#x2F;&quot;&gt;Tutorials Dojo Practice tests&lt;&#x2F;a&gt; as the explanation is very clear and helpful.&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;set-a-deadline-and-book-your-exam&quot;&gt;Set a Deadline and Book Your Exam&lt;&#x2F;h2&gt;
+&lt;p&gt;As I mentioned in my previous &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;billhegazy.com&#x2F;aws-solution-architect-professional-certificate&#x2F;&quot;&gt;post&lt;&#x2F;a&gt;, and would like to emphasize here that it&#x27;s so important, scheduling your exam upfront is a great strategy for overcoming procrastination. Although it&#x27;s scary to set a date without knowing when you&#x27;ll be ready, it actually helps you allocate time to study.&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;it-s-ok-to-reschedule-your-exam&quot;&gt;It&#x27;s OK to Reschedule Your Exam&lt;&#x2F;h2&gt;
+&lt;p&gt;Hey, no need to stress if you&#x27;re thinking about rescheduling your exam because you&#x27;re not quite ready. It&#x27;s totally cool to give yourself some extra time to prepare. After all, the main goal is to pass the exam, right? So, take the time you need to make sure you&#x27;ve got this!&lt;&#x2F;p&gt;
+&lt;p&gt;And if you need someone&#x27;s permission to reschedule, consider this your official go-ahead from me. Just remember, your success and well-being are what matter most, so focus on getting well-prepared for the exam 😄&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;And there you have it! By following these extra tips, I hope you control your procrastination temporarily until you achieve the AWS Certified Security - Specialty exam. Remember, the journey might be challenging, but the rewards are worth it. So, keep pushing forward and believe in yourself. You&#x27;ve got this!&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Like this post? Consider following me on Medium &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;billhegazy.medium.com&#x2F;&quot;&gt;billhegazy&lt;&#x2F;a&gt;.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;If you have questions or want to reach out, add me on &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;bhegazy&#x2F;&quot;&gt;LinkedIn&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+</content>
+    </entry>
+    <entry xml:lang="en">
+        <title>Controlling Procrastination and Get Your AWS Solution Architect Professional Certificate</title>
+        <published>2022-04-18T00:00:00+00:00</published>
+        <updated>2022-04-18T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://billhegazy.com/aws-solution-architect-professional-certificate/" type="text/html"/>
+        <id>https://billhegazy.com/aws-solution-architect-professional-certificate/</id>
+        <content type="html">&lt;p&gt;Yes, I admit it, I have been procrastinating for a few months while preparing for my AWS SA Pro exam&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;, but I controlled it and finally took the exam last February, in fact, I have been procrastinating on writing this post for 2 months now😅.
+&lt;br&gt;&lt;&#x2F;p&gt;
+&lt;div align=&quot;center&quot;&gt;
+ 
+&lt;img src=&quot;annie-spratt-399PPQ9ROlo-unsplash.jpg&quot; alt=&quot;annie-spratt-399PPQ9ROlo-unsplash.jpg&quot; width=&quot;8256&quot; height=&quot;5504&quot; &#x2F;&gt;
+
+Photo by &lt;a href=&quot;https:&#x2F;&#x2F;unsplash.com&#x2F;@anniespratt?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText&quot;&gt;Annie Spratt&lt;&#x2F;a&gt; on &lt;a href=&quot;https:&#x2F;&#x2F;unsplash.com&#x2F;s&#x2F;photos&#x2F;procrastination?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText&quot;&gt;Unsplash&lt;&#x2F;a&gt;
+&lt;&#x2F;div&gt;
+&lt;br&gt;
+&lt;p&gt;I wanted to share a few tips, that helped me to control procrastination while studying for the AWS certification exam.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This post will also serve as a reminder for my future self 🙂&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;set-a-goal&quot;&gt;Set a goal&lt;&#x2F;h2&gt;
+&lt;p&gt;Procrastinator or not, you should set some kind of goal for yourself.&lt;&#x2F;p&gt;
+&lt;p&gt;Trust me this helped me to have some kind of plan. I formed the goal using the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.whatmatters.com&#x2F;faqs&#x2F;okr-meaning-definition-example&quot;&gt;OKR framework&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The goal doesn’t have to be perfect. Here is an example, so you can get started:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Objective&lt;&#x2F;th&gt;&lt;th&gt;Key Results&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Become an AWS Certified Solution Architect Professional by the end of Q1 2022&lt;&#x2F;td&gt;&lt;td&gt;&lt;strong&gt;KR1:&lt;&#x2F;strong&gt; Study a minimum of 1 hour daily&lt;br&gt;&lt;strong&gt;KR2:&lt;&#x2F;strong&gt; Pass at least 2 practice exams with an 80% score or higher&lt;br&gt;&lt;strong&gt;KR3:&lt;&#x2F;strong&gt; Buy a study material and complete it 100%&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h2 id=&quot;schedule-exam-date-upfront&quot;&gt;Schedule exam date upfront&lt;&#x2F;h2&gt;
+&lt;p&gt;If you’re a professional procrastinator (like myself), you have to do this.
+I know it’s scary to schedule the exam date, and not know when you will be ready, but, trust me, this will help you to set aside some time to study.&lt;&#x2F;p&gt;
+&lt;p&gt;You can cancel or reschedule your exam (2 times only) up to 24 hours before your scheduled appointment without an extra fee.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;before-scheduling-the-exam&quot;&gt;Before scheduling the exam:&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;If you’re going for an online proctor exam, then do read &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.psionline.com&#x2F;en-gb&#x2F;certification&#x2F;aws-training&#x2F;&quot;&gt;PSI&lt;&#x2F;a&gt; &#x2F; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;home.pearsonvue.com&#x2F;aws&#x2F;onvue&quot;&gt;Pearson Vue&lt;&#x2F;a&gt; FAQ.&lt;&#x2F;li&gt;
+&lt;li&gt;Take advantage of the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;aws.amazon.com&#x2F;certification&#x2F;policies&#x2F;before-testing&#x2F;#Requesting_Accommodations&quot;&gt;ESL +30&lt;&#x2F;a&gt;, if English is not your first language. To get the extra 30 minutes, you must request this before scheduling your exam.&lt;&#x2F;li&gt;
+&lt;li&gt;Depending on your situation and time, you will need to figure out (approximately) how long it will take for you to complete your studies. I recommend starting by going through the video course curriculum and practice exams.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;take-notes-along-the-way&quot;&gt;Take notes along the way&lt;&#x2F;h2&gt;
+&lt;p&gt;Notes will be your best friend for the next few months to remind you about important AWS exam points, AWS services that you have never used before, and most importantly remind you to keep going.&lt;&#x2F;p&gt;
+&lt;p&gt;You might be wondering, &lt;em&gt;what notes should you take?&lt;&#x2F;em&gt; I will give you an example of what my notes looks like:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I use &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.notion.so&#x2F;&quot;&gt;notion&lt;&#x2F;a&gt; as my note-taking app, I recommend note-taking app that can sync to multiple devices&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;div align=&quot;center&quot;&gt;
+ 
+&lt;img src=&quot;aws-sap-notes-example.png&quot; alt=&quot;Notes Example Photo&quot; width=&quot;1649&quot; height=&quot;1010&quot; &#x2F;&gt;
+
+&lt;font color=&quot;#808080&quot; size=&quot;-1&quot;&gt;Example of my AWS notes&lt;&#x2F;font&gt;
+&lt;&#x2F;div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Review:&lt;&#x2F;strong&gt; Note&#x2F;screenshot of important points from the instructor or anything I find important to remember.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Weak services:&lt;&#x2F;strong&gt; Summary of the AWS services that I’m weak at or never used before.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Real life usage:&lt;&#x2F;strong&gt; Where I gather improvements that I want to apply to the current AWS Infrastructure that I manage.
+&lt;br&gt;&lt;br&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;find-a-study-partner-if-possible&quot;&gt;Find a study partner (if possible)&lt;&#x2F;h2&gt;
+&lt;p&gt;The AWS SA Pro is tough and long, your study partner will remind you that, you are not alone and to keep going. A study partner can also give you tips that they found out while studying. I was lucky enough to have a partner at my work, who happened to be studying for the AWS SA Pro and we did a weekly sharing together.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;be-gentle-to-yourself&quot;&gt;Be gentle to yourself&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Have no fear of perfection - you&#x27;ll never reach it.” — Salvador Dali&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;If you don&#x27;t feel ready yet, don’t feel bad about it, and remember that It’s OK to re-schedule the exam date. I had to re-schedule 2 times myself.&lt;&#x2F;p&gt;
+&lt;p&gt;Go through the study materials, go through the notes and review the parts that you&#x27;re weak at.&lt;&#x2F;p&gt;
+&lt;p&gt;The key is to remember that anyone can do it, you might need to study harder or need more time than others, but in the end, you will get there!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;study-materials&quot;&gt;Study materials:&lt;&#x2F;h2&gt;
+&lt;p&gt;I understand that you might be wondering about the study materials that helped me prepare.Here is what I recommend:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;learn.cantrill.io&#x2F;p&#x2F;aws-certified-solutions-architect-professional&quot;&gt;Adrian Cantrill&lt;&#x2F;a&gt;: AWS SA Pro video course, Adrian&#x27;s course is very detailed and well organized.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;portal.tutorialsdojo.com&#x2F;courses&#x2F;aws-certified-solutions-architect-professional-practice-exams&#x2F;&quot;&gt;Tutorials Dojo Practice exam&lt;&#x2F;a&gt;: Practice exams currently include 4 exam sets, the practice exams will help you prepare for the real one and also identify your weak points.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;explore.skillbuilder.aws&#x2F;learn&#x2F;course&#x2F;34&#x2F;exam-readiness-aws-certified-solutions-architect-professional&quot;&gt;AWS Exam Readiness&lt;&#x2F;a&gt;: Official Exam Readiness from AWS.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;why-get-aws-certified&quot;&gt;Why get AWS Certified&lt;&#x2F;h2&gt;
+&lt;p&gt;I asked myself the exact same question. I have been managing AWS for 7+ years now, and I proved that I’m more than capable when it comes to AWS cloud.&lt;&#x2F;p&gt;
+&lt;p&gt;There are many benefits listed &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;aws.amazon.com&#x2F;certification&#x2F;benefits&quot;&gt;here&lt;&#x2F;a&gt;, for me, &lt;em&gt;it&#x27;s simple: I love learning!&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Getting AWS certified, was an opportunity to learn more, learn what I have done wrong, and learn what can I improve in the current AWS architecture.&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;I have learned a lot from studying for such a tough exam like AWS SA Pro, learning new AWS skills, and controlling procrastination.&lt;&#x2F;p&gt;
+&lt;p&gt;I hope that the tips can help you to get started on your AWS SA Pro exam journey.&lt;&#x2F;p&gt;
+&lt;p&gt;If I could do it, then anyone can!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;over-to-you&quot;&gt;Over to you&lt;&#x2F;h2&gt;
+&lt;p&gt;Which AWS exams are you currently interested in? What stopping you from preparing for the AWS exam?&lt;&#x2F;p&gt;
+&lt;p&gt;Like this post? Consider following me on Medium &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;billhegazy.medium.com&#x2F;&quot;&gt;billhegazy&lt;&#x2F;a&gt;.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;If you have questions or want to reach out, add me on &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;bhegazy&#x2F;&quot;&gt;LinkedIn&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+</content>
+    </entry>
+</feed>

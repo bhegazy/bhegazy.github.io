@@ -1,0 +1,4 @@
+Sitemap: https://billhegazy.com/sitemap.xml
+User-Agent: *
+Allow: /
+Host: https://billhegazy.com

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <script src="https://billhegazy.com/theme.min.js" integrity="sha384-IpIaa84kOKgkF5EJ0fD/kBe2wtIIsIB60ANGmuJxeA0dz5bSRfwBwp2/QybtQpU2"></script>
+  <link rel="stylesheet" href="https://billhegazy.com/abridge-switcher.css?h=48c4ccc424d544f703dd" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <script defer src="https://billhegazy.com/abridge-bundle-nosearch.min.js?h=ff8a99b969caffde4dc9" integrity="sha384-TTPczRVfKSqfcvWVXDBLK5BoDc60R8M377TgY55NuBwnZlUPMNQhS2Riir9tqf2c"></script>
+  <meta name="base" content="https://billhegazy.com" />
+  <link rel="alternate" type="application/atom+xml" title="Atom/RSS Feed" href="https://billhegazy.com/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Terraform in AWS | Bill Hegazy</title>
+  <meta name="author" content="Bill Hegazy" />
+  <meta name="copyright" content="Bill Hegazy" />
+  <meta name="description" content="Tools and best practices. that makes your terraform life easier on AWS." />
+  <link rel="canonical" href="https://billhegazy.com/terraform-in-aws/" />
+  <meta name="keywords" content="Cloud, AWS, DevOps, Life, Blog, Bill, Hegazy, bhegazy, Billhegazy" />
+  <meta property="og:url" content="https://billhegazy.com/terraform-in-aws/" />
+  <meta name="twitter:url" content="https://billhegazy.com/terraform-in-aws/" />
+  <meta property="og:description" content="Tools and best practices. that makes your terraform life easier on AWS." />
+  <meta name="twitter:description" content="Tools and best practices. that makes your terraform life easier on AWS." />
+  <meta property="og:title" content="Terraform in AWS | Bill Hegazy" />
+  <meta name="twitter:title" content="Terraform in AWS | Bill Hegazy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://billhegazy.com/banner.png" />
+  <meta property="og:image" content="https://billhegazy.com/banner.png" />
+  <meta property="og:site_name" content="Bill Hegazy" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:updated_time" content="2022-04-17" />
+  <meta name="twitter:site" content="@billhegazy" />
+  <meta name="twitter:creator" content="@billhegazy" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="msapplication-TileColor" content="#333333" />
+  <link rel="manifest" href="https://billhegazy.com/site.webmanifest" />
+  <link rel="mask-icon" href="https://billhegazy.com/safari-pinned-tab.svg" color="#ff9900" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://billhegazy.com/images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://billhegazy.com/images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://billhegazy.com/images/favicon.ico" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://billhegazy.com/"><font color="#fb0">Bill</font> Hegazy</a></h1></div>
+      <div>
+        <ul><li> <h2><a href="https://billhegazy.com/">Home</a></h2> </li><li> <h2><a href="https://billhegazy.com/posts/">Posts</a></h2> </li><li> <h2><a href="https://billhegazy.com/tags/">Tags</a></h2> </li><li> <h2><a href="https://billhegazy.com/links/">Links</a></h2> </li><li> <h2><a href="https://billhegazy.com/about/">About</a></h2> </li><li class="js"><i type="reset" id="mode" class="svgs adjust"></i></li></ul>
+      </div>
+    </nav>
+    <div>Blogs About Cloud, AWS, DevOps and Life</div>
+  </header>
+  <main>
+    <article>
+        <h1><a href="https://billhegazy.com/terraform-in-aws/">Terraform in AWS</a></h1>
+        <span class="s95"> Bill Hegazy<span class="hpad"> </span> April 17, 2022<span class="hpad"> </span> #<a href="https://billhegazy.com/tags/aws/">AWS</a>  #<a href="https://billhegazy.com/tags/terraform/">terraform</a> </span>
+
+    <p><em>Tools and best practices, that makes your terraform life easier on AWS.</em></p>
+<span id="continue-reading"></span><p align="center">
+  <img src="terraform-aws.jpeg"/>
+</p>
+<p><i> Originally published at <a href="https://billhegazy.medium.com/terraform-in-aws-9793e3c01173">https://medium.com</a> on 19 June 2021</i></p>
+<h2 id="1-aws-vault">1) aws-vault</h2>
+<p>Although it's not exactly specific for Terraform aws-vault is a must-use tool for Terraform in AWS, especially when you have multiple AWS accounts.</p>
+<p><a rel="noopener" target="_blank" href="https://github.com/99designs/aws-vault">aws-vault</a> stores IAM credentials in your Os's secure Keystore and generates temporary credentials to be used in shell.</p>
+<p>Using aws-vault with Terraform to easily switch between AWS accounts and avoid hard-coding AWS profile in Terraform backend state code.</p>
+<h3 id="install-aws-vault">Install aws-vault</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">brew</span></span><span class="z-meta z-function-call z-arguments z-shell"> install<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>cask</span> aws-vault</span>
+</span></code></pre>
+<h3 id="usage-example">Usage Example</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Run simple aws command</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">aws-vault</span></span><span class="z-meta z-function-call z-arguments z-shell"> exec aws_example_account<span class="z-keyword z-operator z-end-of-options z-shell"> --</span></span><span class="z-meta z-function-call z-arguments z-shell"> aws s3 ls</span>
+<span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Login to aws console using temporary credentials</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">aws-vault</span></span><span class="z-meta z-function-call z-arguments z-shell"> login aws_example_account</span>
+<span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Use with terraform</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">aws-vault</span></span><span class="z-meta z-function-call z-arguments z-shell"> exec aws_example_account<span class="z-keyword z-operator z-end-of-options z-shell"> --</span></span><span class="z-meta z-function-call z-arguments z-shell"> terraform apply</span>
+</span></code></pre>
+<h2 id="2-tfenv">2) tfenv</h2>
+<p>tfenv is Terraform version manager similar to rbenv.</p>
+<h3 id="install-tfenv">Install tfenv</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">brew</span></span><span class="z-meta z-function-call z-arguments z-shell"> install tfenv</span>
+</span></code></pre>
+<h3 id="usage-example-1">Usage Example</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> List tf remote versions</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">tfenv</span></span><span class="z-meta z-function-call z-arguments z-shell"> list-remote</span>
+<span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Install tf version</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">tfenv</span></span><span class="z-meta z-function-call z-arguments z-shell"> install 0.11.15</span>
+<span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Use tf version</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">tfenv</span></span><span class="z-meta z-function-call z-arguments z-shell"> use 0.11.15</span>
+</span></code></pre>
+<h3 id="tfenv-automatic-version-switching">tfenv automatic version switching</h3>
+<p>Add <code>.terraform-version</code> file to automatically switch between different Terraform versions and control versions between accounts.</p>
+<p>Example:</p>
+<pre class="z-code"><code><span class="z-text z-plain">├── .
+├── aws_prodution_account
+    ├── resource_1
+    │   ├── main.tf
+    |   ├── variables.tf
+    |   └── ...
+    ├── resource_2
+    │   ├── main.tf
+    |   ├── variables.tf
+    |   └── ...
+    ├── .terraform-version
+├── aws_staging_account
+    ├── resource_1
+    │   ├── main.tf
+    |   ├── variables.tf
+    |   └── ...
+    ├── resource_2
+    │   ├── main.tf
+    |   ├── variables.tf
+    |   └── ...
+    ├── .terraform-version
+├── README.md
+└── ...
+</span></code></pre>
+<h2 id="3-pre-commit">3) pre-commit</h2>
+<p>Using <a rel="noopener" target="_blank" href="http://pre-commit.com/">pre-commit framework</a> with terraform repository, will help your code to be kept clean, formated, updated document and checked for tf security issues (optional with <a rel="noopener" target="_blank" href="https://github.com/tfsec/tfsec">tfsec</a>) before committing and pushing the code to git source.</p>
+<h3 id="install-precommit-and-related-tools">Install precommit and related tools</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">brew</span></span><span class="z-meta z-function-call z-arguments z-shell"> install pre-commit gawk terraform-docs tflint coreutils checkov terrascan</span>
+</span></code></pre>
+<h3 id="install-the-pre-commit-hook-globally">Install the pre-commit hook globally</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-variable z-other z-readwrite z-assignment z-shell">DIR</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell"><span class="z-meta z-group z-expansion z-tilde"><span class="z-variable z-language z-tilde z-shell">~</span></span>/.git-template</span>
+<span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> config<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>global</span> init.templateDir <span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">DIR</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span></span>
+<span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">pre-commit</span></span><span class="z-meta z-function-call z-arguments z-shell"> init-templatedir<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>t</span> pre-commit <span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">DIR</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span></span>
+</span></code></pre>
+<h3 id="initialize-git-repo-with-terraform-hooks">Initialize git repo with terraform hooks</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> your_terraform_git_repo</span>
+<span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> init <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> if new repo</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cat</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-unquoted z-heredoc z-shell"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&lt;&lt;</span><span class="z-keyword z-control z-heredoc-token z-shell">EOF</span></span> <span class="z-meta z-function-call z-arguments z-shell"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span> .pre-commit-config.yaml</span><span class="z-string z-unquoted z-heredoc z-shell">
+repos:
+- repo: git://github.com/antonbabenko/pre-commit-terraform
+  rev: &lt;VERSION&gt; # Get the latest from: &lt;https://github.com/antonbabenko/pre-commit-terraform/releases&gt;
+  hooks:
+    - id: terraform_fmt
+    - id: terraform_docs
+<span class="z-keyword z-control z-heredoc-token z-shell">EOF</span></span></span>
+<span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">pre-commit</span></span><span class="z-meta z-function-call z-arguments z-shell"> install</span>
+<span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Test pre commit</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">pre-commit</span></span><span class="z-meta z-function-call z-arguments z-shell"> run<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>all-</span></span>
+</span></code></pre>
+<blockquote>
+<p>Now, whenever you run git commit on terraform repo, pre-commit will run the hooks</p>
+</blockquote>
+<h3 id="auto-generate-terraform-docs-with-pre-commit">Auto generate Terraform docs with pre-commit</h3>
+<blockquote>
+<p>Using <a rel="noopener" target="_blank" href="https://github.com/terraform-docs/terraform-docs">terraform-docs</a> with terraform modules</p>
+</blockquote>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> terraform_example_module</span>
+<span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cat</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-unquoted z-heredoc z-shell"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&lt;&lt;</span><span class="z-keyword z-control z-heredoc-token z-shell">EOF</span></span> <span class="z-meta z-function-call z-arguments z-shell"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span> README.md</span><span class="z-string z-unquoted z-heredoc z-shell">
+&lt;!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --&gt;
+lines here will be replaced by terraform_docs when pre-commit runs
+&lt;!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --&gt;
+<span class="z-keyword z-control z-heredoc-token z-shell">EOF</span></span></span>
+<span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">pre-commit</span></span><span class="z-meta z-function-call z-arguments z-shell"> run<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>all-files</span></span>
+</span></code></pre>
+<h2 id="4-tfsec">4) tfsec</h2>
+<p>Want static analysis for your terraform code to help spot potential security issues? then all you need is <a rel="noopener" target="_blank" href="https://github.com/tfsec/tfsec">tfsec</a>.</p>
+<h3 id="install-tfsec">Install tfsec</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">brew</span></span><span class="z-meta z-function-call z-arguments z-shell"> install tfsec</span>
+</span></code></pre>
+<h3 id="usage-example-2">Usage Example</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> terraform_folder</span>
+<span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">tfsec</span></span><span class="z-meta z-function-call z-arguments z-shell"> .</span>
+</span></code></pre>
+<h3 id="add-tfsec-to-your-pre-commit-config">Add tfsec to your pre-commit config</h3>
+<p>Add <code>terraform_tfsec</code> hook to <code>.pre-commit-config.yaml</code>
+<strong>Example</strong>:</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">repos</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+<span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">repo</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">git://github.com/antonbabenko/pre-commit-terraform</span>
+  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">hooks</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-constant z-numeric z-float z-decimal z-yaml"><span class="z-punctuation z-separator z-decimal z-yaml">.</span>..</span>
+    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">id</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">terraform_tfsec</span>
+</span></code></pre>
+<h3 id="ignoring-some-tfsec-rules">Ignoring some tfsec rules</h3>
+<p>You may wish to ignore some warnings from tfsec. you can simply add a comment containing <code>tfsec:ignore:&lt;RULE&gt;</code> to the offending line in your templates.</p>
+<p><strong>For example, to ignore an open security group rule:</strong></p>
+<pre class="z-code"><code><span class="z-text z-plain">resource &quot;aws_security_group_rule&quot; &quot;my-rule&quot; {
+    type = &quot;ingress&quot;
+    #tfsec:ignore:AWS006
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+}
+</span></code></pre>
+<h2 id="other-best-practices">Other best practices:</h2>
+<ul>
+<li>Use <a rel="noopener" target="_blank" href="https://registry.terraform.io/providers/hashicorp/aws/latest">official Terraform public module</a> for AWS, official public module are well written and tested ( don't re-invent the wheel).</li>
+<li>Limit access to Terraform state S3bucket access, encrypt it and enable versioning.</li>
+<li>Avoid storing secrets when creating a resource as Terraform state will store secrets plain-text, at least create a temporary password and change it after the resource is created.</li>
+</ul>
+<pre class="z-code"><code><span class="z-text z-plain"># Simple Example
+resource &quot;random_password&quot; &quot;db-password&quot; {
+  length  = 16
+  special = false
+}
+resource &quot;aws_db_instance&quot; &quot;default&quot; {
+  engine           = &quot;mysql&quot;
+  engine_version = &quot;5.7&quot;
+  instance_class       = &quot;db.t3.micro&quot;
+  name                 = &quot;mydb&quot;
+  username             = &quot;foo&quot;
+  password             = random_password.db-password.result
+  ...
+}
+</span></code></pre>
+
+<p><b><a href="#">Back to top</a></b></p>
+    </article>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav>
+        <ul><li><a href="https://billhegazy.com/atom.xml" target="_blank" title="Atom/RSS Feed"><i type="Button" class="svg rss" title="Atom/RSS Feed"></i></a></li><li><a href="https://twitter.com/billhegazy/" target="_blank" title="Twitter"><i type="Button" class="svg twitter" title="Twitter"></i></a></li><li><a href="https://www.linkedin.com/in/bhegazy/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a></li><li><a href="https://github.com/bhegazy/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a></li><li><a href="https://hub.docker.com/u/bhegazy/" target="_blank" title="Docker"><i type="Button" class="svg docker" title="Docker"></i></a></li><li><a href="https://stackoverflow.com/users/6570086/" target="_blank" title="Stack"><i type="Button" class="svg stack" title="Stack"></i></a></li></ul>
+      </nav>
+      <p class="s90">Copyright &copy; 2023 Bill Hegazy</p>
+      <nav>
+        <ul><li class="s90"> <a href="https://billhegazy.com/"> Home </a> </li><li class="s90"> <a href="https://billhegazy.com/about/"> About </a> </li><li class="s90"> <a href="https://billhegazy.com/privacy/"> Privacy </a> </li><li class="s90"> <a href="https://billhegazy.com/sitemap.xml"> Sitemap </a> </li></ul>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> and <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer>
+<span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>

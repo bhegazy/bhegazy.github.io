@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Bill Hegazy - EKS</title>
+    <subtitle>Blogs About Cloud, AWS, DevOps and Life</subtitle>
+    <link href="https://billhegazy.com/tags/eks/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://billhegazy.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2022-07-20T00:00:00+00:00</updated>
+    <id>https://billhegazy.com/tags/eks/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Terraform EKS module upgrade from v17.x to v18.x</title>
+        <published>2022-07-20T00:00:00+00:00</published>
+        <updated>2022-07-20T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://billhegazy.com/eks-terraform-module-upgrade-from-v17-to-v18/" type="text/html"/>
+        <id>https://billhegazy.com/eks-terraform-module-upgrade-from-v17-to-v18/</id>
+        <content type="html">&lt;p&gt;If you’re like me and you are using the awesome &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;terraform-aws-modules&#x2F;terraform-aws-eks&quot;&gt;terraform-aws-eks&lt;&#x2F;a&gt; module to manage your EKS clusters, then you should know that there are many &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;terraform-aws-modules&#x2F;terraform-aws-eks&#x2F;releases&#x2F;tag&#x2F;v18.0.0&quot;&gt;breaking changes&lt;&#x2F;a&gt; when upgrading the module version from &lt;code&gt;v17.x to&lt;&#x2F;code&gt; &lt;code&gt;v18.x&lt;&#x2F;code&gt;, in this guide I will share the steps that I took to ease the upgrade a little bit (we have more than 12 clusters with similar config) and I hope that this helps someone.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I highly recommend that you also read the official guide &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;terraform-aws-modules&#x2F;terraform-aws-eks&#x2F;blob&#x2F;master&#x2F;docs&#x2F;UPGRADE-18.0.md&quot;&gt;UPGRADE-18.0.md&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;1-change-module-version-and-variables&quot;&gt;1) Change module version and variables&lt;&#x2F;h2&gt;
+&lt;p&gt;Check the variables changes &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;terraform-aws-modules&#x2F;terraform-aws-eks&#x2F;blob&#x2F;master&#x2F;docs&#x2F;UPGRADE-18.0.md#variable-and-output-changes&quot;&gt;here&lt;&#x2F;a&gt;, as everyone is using a different configuration, in my case I have ended up with the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;hcl&quot; class=&quot;language-hcl z-code&quot;&gt;&lt;code class=&quot;language-hcl&quot; data-lang=&quot;hcl&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;module &amp;quot;eks&amp;quot; {
+  source = &amp;quot;terraform-aws-modules&#x2F;eks&#x2F;aws&amp;quot;
+
+  # check releases for the latest version
+  # https:&#x2F;&#x2F;github.com&#x2F;terraform-aws-modules&#x2F;terraform-aws-eks&#x2F;releases
+  version = &amp;quot;18.26.2&amp;quot;
+
+  # Needed for EKS module Upgrade
+  # https:&#x2F;&#x2F;github.com&#x2F;terraform-aws-modules&#x2F;terraform-aws-eks&#x2F;blob&#x2F;master&#x2F;docs&#x2F;UPGRADE-18.0.md#upgrade-from-v17x-to-v18x
+  prefix_separator                   = &amp;quot;&amp;quot;
+  iam_role_name                      = var.cluster_name
+  cluster_security_group_name        = var.cluster_name
+  cluster_security_group_description = &amp;quot;EKS cluster security group.&amp;quot;
+
+  # Add this to avoid issues with AWS Load balancer controller
+  # &amp;quot;error&amp;quot;:&amp;quot;expect exactly one securityGroup tagged kubernetes.io&#x2F;cluster&#x2F;xxx
+  # https:&#x2F;&#x2F;github.com&#x2F;terraform-aws-modules&#x2F;terraform-aws-eks&#x2F;issues&#x2F;1986
+  node_security_group_tags = {
+    &amp;quot;kubernetes.io&#x2F;cluster&#x2F;${var.cluster_name}&amp;quot; = null
+  }
+
+  cluster_name                    = local.name
+  cluster_version                 = local.cluster_version
+  cluster_endpoint_private_access = true
+  cluster_endpoint_public_access  = true
+
+  cluster_addons = {
+    coredns = {
+      resolve_conflicts = &amp;quot;OVERWRITE&amp;quot;
+    }
+    kube-proxy = {
+      resolve_conflicts = &amp;quot;OVERWRITE&amp;quot;
+    }
+  }
+
+  cluster_encryption_config = [
+    {
+      provider_key_arn = aws_kms_key.eks.arn
+      resources        = [&amp;quot;secrets&amp;quot;]
+    }
+  ]
+
+  vpc_id = module.vpc.vpc_id
+
+  # Rename subnets to subnet_ids
+  subnet_ids = module.vpc.private_subnets
+
+  # Rename node_group_defaults to eks_managed_node_group_defaults
+  eks_managed_node_group_defaults = {
+    ami_type       = &amp;quot;AL2_x86_64&amp;quot;
+    instance_types = [&amp;quot;m5.large&amp;quot;, &amp;quot;m5a.large&amp;quot;, &amp;quot;t3.large&amp;quot;, &amp;quot;m5.xlarge&amp;quot;]
+
+    iam_role_attach_cni_policy = true
+
+    update_config = {
+      max_unavailable_percentage = 50
+    }
+
+    block_device_mappings = {
+      xvda = {
+        device_name = &amp;quot;&#x2F;dev&#x2F;xvda&amp;quot;
+
+        ebs = {
+          volume_size = &amp;quot;100&amp;quot;
+          volume_type = &amp;quot;gp3&amp;quot;
+          encrypted   = true
+          kms_key_id  = aws_kms_key.ebs.arn
+        }
+
+      }
+    }
+    metadata_options = {
+      http_endpoint               = &amp;quot;enabled&amp;quot;
+      http_tokens                 = &amp;quot;required&amp;quot;
+      http_put_response_hop_limit = 2
+      instance_metadata_tags      = &amp;quot;disabled&amp;quot;
+    }
+  }
+  # Rename eks_managed_node_groups to eks_managed_node_groups
+  # the variables in the sub module also changed, so be sure to rename them!
+  eks_managed_node_groups = {
+    default = {
+      name            = &amp;quot;default&amp;quot;
+      use_name_prefix = true
+      subnet_ids      = module.vpc.private_subnets
+      desired_size    = 3
+      max_size        = 10
+      min_size        = 3
+
+      labels = {
+        environment = local.environment
+        capacity    = &amp;quot;on_demand&amp;quot;
+      }
+
+      tags = local.tags
+    },
+    spot = {
+      name            = &amp;quot;spot&amp;quot;
+      use_name_prefix = true
+      capacity_type   = &amp;quot;SPOT&amp;quot;
+      instance_types  = [&amp;quot;m5a.xlarge&amp;quot;, &amp;quot;m5.xlarge&amp;quot;, &amp;quot;r5.xlarge&amp;quot;, &amp;quot;r5a.xlarge&amp;quot;]
+      subnet_ids      = module.vpc.private_subnets
+      desired_size    = 3
+      max_size        = 15
+      min_size        = 3
+      cluster_version = local.cluster_version
+
+      labels = {
+        environment = local.environment
+        capacity    = &amp;quot;spot&amp;quot;
+      }
+
+      tags = local.tags
+    }
+    tags = local.tags
+  }
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If your &lt;code&gt;iam_role_name&lt;&#x2F;code&gt; variable is NOT the cluster_name, then get the cluster iam role name using aws cli:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-storage z-modifier z-shell&quot;&gt;export&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CLUSTER_NAME&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;bill-eks-test&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;aws-vault&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; exec aws-prod&lt;span class=&quot;z-keyword z-operator z-end-of-options z-shell&quot;&gt; --&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; aws eks describe-cluster --name &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;CLUSTER_NAME&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; --output json &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-logical z-pipe z-shell&quot;&gt;|&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;jq&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;r&lt;&#x2F;span&gt; .cluster.roleArn&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-pipe z-shell&quot;&gt;|&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;cut&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;d&lt;&#x2F;span&gt;&#x2F;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;f2&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;2-do-a-terraform-plan-to-see-what-changes&quot;&gt;2) Do a &lt;code&gt;terraform plan&lt;&#x2F;code&gt; to see what changes&lt;&#x2F;h2&gt;
+&lt;p&gt;You should see a lot of resources change including for example IAM, node groups, and even cluster control plane replacement (we will fix that next step)&lt;&#x2F;p&gt;
+&lt;p&gt;Since there are a lot of changes and we wanted to make the upgrade simple for us, the best approach is to remove existing node groups and related resources from terraform state, this suggestion also came from users in the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;terraform-aws-modules&#x2F;terraform-aws-eks&#x2F;issues&#x2F;1744&quot;&gt;related Github issue&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;3-terraform-state-migration-and-deletion&quot;&gt;3) Terraform state migration and deletion&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Everyone setup is different so be careful when playing with Terrafrom state file, as your tf state might get corrupted, always backup the state file first!&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Backup terraform state first &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state pull &lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt; tf_backup.tfstate&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Remove node_groups from tf state&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state rm &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;module.node_groups&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Rename the cluster iam role tf resource to new name&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state mv &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_iam_role.cluster[0]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_iam_role.this[0]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Remove policy attachment for node groups from tf state&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state rm &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_iam_role_policy_attachment.workers_AmazonEC2ContainerRegistryReadOnly[0]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_iam_role_policy_attachment.workers_AmazonEKSWorkerNodePolicy[0]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_iam_role_policy_attachment.workers_AmazonEKS_CNI_Policy[0]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Remove node groups security group from state&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state rm &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_security_group.workers[0]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Remove node groups aws_security_group_rule resources from tf state&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state rm &lt;span class=&quot;z-meta z-group z-expansion z-command z-parens z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state list&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-pipe z-shell&quot;&gt;|&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;grep&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; aws_security_group_rule.workers&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Remove cluster aws_security_group_rule resources from tf state&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state rm &lt;span class=&quot;z-meta z-group z-expansion z-command z-parens z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state list&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-pipe z-shell&quot;&gt;|&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;grep&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; aws_security_group_rule.cluster&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Remove IAM Role of node groups from tf state&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state rm &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_iam_role.workers[0]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; If you are managing the aws-auth configmap using EKS module&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Then remove aws-auth configmap from tf state as now the module dropped the support&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state rm &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;kubernetes_config_map.aws_auth[0]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; If you use addons then remove from state as well&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; state rm &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_eks_addon.kube_proxy&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_eks_addon.vpc_cni&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_eks_addon.coredns&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Then import the new add ons to state&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; import &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_eks_addon.this[&amp;quot;coredns&amp;quot;]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; cluster:coredns&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; import &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_eks_addon.this[&amp;quot;vpc-cni&amp;quot;]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; cluster:vpc-cni&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;terraform&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; import &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;aws_eks_addon.this[&amp;quot;kube-proxy&amp;quot;]&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; cluster:kube-proxy&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;4-test-terraform-plan-again&quot;&gt;4) Test &lt;code&gt;terraform plan&lt;&#x2F;code&gt; again&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;make-sure-you-do-not-see-the-following&quot;&gt;Make sure you DO NOT see the following&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;The cluster Must be replaced&lt;&#x2F;li&gt;
+&lt;li&gt;Old node groups must be destroyed&lt;&#x2F;li&gt;
+&lt;li&gt;Node groups related resources (sg, sg rules, old node iam) must be destroyed&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;br&gt;
+&lt;h3 id=&quot;you-should-see-the-following&quot;&gt;You should see the following:&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Some cluster policy changes.&lt;&#x2F;li&gt;
+&lt;li&gt;New node group adding.&lt;&#x2F;li&gt;
+&lt;li&gt;New node groups related resources.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;5-proceed-with-terraform-apply&quot;&gt;5) Proceed with &lt;code&gt;terraform apply&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;You can now start by applying the changes with &lt;code&gt;terraform apply&lt;&#x2F;code&gt; .&lt;&#x2F;p&gt;
+&lt;p&gt;After the &lt;code&gt;apply&lt;&#x2F;code&gt; is complete, you should see new nodes joining the cluster and working as expected&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;h2 id=&quot;6-manually-delete-the-old-node-group-and-related-resources&quot;&gt;6) Manually delete the old node group and related resources&lt;&#x2F;h2&gt;
+&lt;p&gt;Now you can go ahead and delete the old node group manually and pods will restart on new node groups 👍🎉.&lt;&#x2F;p&gt;
+&lt;p&gt;Other related resources should be manually deleted as well such as old node group security groups.&lt;&#x2F;p&gt;
+&lt;br&gt;
+&lt;h1 id=&quot;over-to-you&quot;&gt;Over to you&lt;&#x2F;h1&gt;
+&lt;p&gt;Like this post? Consider following me on Medium &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;billhegazy.medium.com&#x2F;&quot;&gt;billhegazy&lt;&#x2F;a&gt;.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;If you have questions or want to reach out, add me on &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;bhegazy&#x2F;&quot;&gt;LinkedIn&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+</content>
+    </entry>
+</feed>
